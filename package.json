@@ -1,0 +1,33 @@
+{
+  "name": "@uon/geom",
+  "version": "0.1.0",
+  "description": "A computational geometry library",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "bundle": "tsc && webpack",
+    "prepublishOnly": "tsc -p ./ --outDir dist/"
+  },
+  "dependencies": {
+      "@uon/math": "^0.3.0"
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uon-team/geom.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Gabriel Roy",
+    "email": "gab@uon.io",
+    "url": "https://uon.io"
+  },
+  "keywords": [
+    "uon",
+    "3d",
+    "geometry",
+    "math",
+    "typescript"
+  ]
+}
