@@ -2,21 +2,24 @@
 
 import { Vector2 } from '@uon/math';
 
-export function ConvexHull(pointset: Vector2[]) {
+/**
+ * Compute a convex polygon encompassing a pointset
+ * @param pointset 
+ */
+export function ConvexHull2(pointset: Vector2[]) {
 
-    let convex,
+    let convex: Vector2[],
         upper = UpperTangent(pointset),
         lower = LowerTangent(pointset);
     convex = lower.concat(upper);
+
+    // append first point at end
     convex.push(pointset[0]);
+    
     return convex;  
 }
 
 
-function Cross(o: Vector2, a: Vector2, b: Vector2) {
-
-    return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
-}
 
 function UpperTangent(pointset: Vector2[]) {
     var lower = [];
@@ -30,7 +33,6 @@ function UpperTangent(pointset: Vector2[]) {
     return lower;
 }
 
-
 function LowerTangent(pointset: Vector2[]) {
     var reversed = pointset.reverse(),
         upper = [];
@@ -42,4 +44,9 @@ function LowerTangent(pointset: Vector2[]) {
     }
     upper.pop();
     return upper;
+}
+
+
+function Cross(o: Vector2, a: Vector2, b: Vector2) {
+    return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
 }

@@ -18,6 +18,9 @@ enum SegmentType {
 }
 
 
+/**
+ * A list of path segments
+ */
 export class Path2 {
 
     private segmentTypes: SegmentType[] = [];
@@ -118,9 +121,20 @@ export class Path2 {
      * Creates an arc to point x,y
      */
     arcTo() {
-
+        throw new Error('Not Implemented');
     }
 
+    /**
+     * Creates an arc from the current point to [x, y]
+     * 
+     * FIXME: do not subdivide here
+     * @param x 
+     * @param y 
+     * @param radius 
+     * @param start 
+     * @param end 
+     * @param clockwise 
+     */
     arc(x: number, y: number, radius: number, start: number, end: number, clockwise: boolean) {
 
         var dist = Math.abs(start - end);
@@ -139,7 +153,7 @@ export class Path2 {
         var f = dist / (steps),
             t = start
 
-        //modify direction
+        // modify direction
         f *= clockwise ? -1 : 1
 
         for (var i = 0; i < steps + 1; i++) {
@@ -268,6 +282,24 @@ export class Path2 {
                     let p1 = this.vertices[v++];
                     let p2 = this.vertices[v++];
                     let p3 = this.vertices[v];
+
+                    if (this.computedVertices.length == 0) {
+                        this.computedVertices.push(p1);
+                    }
+
+
+                    this.subdivideConic(p1, p2, p3, 0);
+
+                    this.computedVertices.push(p3);
+
+                }
+
+                case SegmentType.Cubic: {
+
+                    let p1 = this.vertices[v++];
+                    let p2 = this.vertices[v++];
+                    let p3 = this.vertices[v++];
+                    let p4 = this.vertices[v];
 
                     if (this.computedVertices.length == 0) {
                         this.computedVertices.push(p1);

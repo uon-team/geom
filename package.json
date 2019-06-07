@@ -1,15 +1,14 @@
 {
   "name": "@uon/geom",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "description": "A computational geometry library",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
   "scripts": {
     "bundle": "tsc && webpack",
     "prepublishOnly": "tsc -p ./ --outDir dist/"
   },
   "dependencies": {
-      "@uon/math": "^0.3.0"
+      "@uon/math": "^0.9.0"
   },
   "devDependencies": {
   },
